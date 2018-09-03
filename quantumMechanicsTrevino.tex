@@ -1,0 +1,718 @@
+\documentclass[10pt]{beamer}
+
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\usepackage{animate} 
+\usepackage{multimedia}
+\usepackage{physics}
+\usepackage{amsmath}
+
+\title{Quantum Mechanics}
+\subtitle{for Computing Apps}
+\date{\today}
+\author{Francisco Treviño}
+\institute{\alert{Continental} México}
+\titlegraphic{\hfill\includegraphics[height=0.7cm]{conti-logo.jpg}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Contents}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+%\begin{frame}
+%\frametitle{Scope}
+%For a one semester course where the students have not taken modern physics before, I would recommend to cover these topics: Sections:
+%\begin{itemize}
+%\item \alert{1.1–1.6}; 
+%\item 2.2.2, 2.2.4, 2.3, 2.4.1–2.4.8, 2.5.1, 2.5.3, 2.6.1–2.6.2, \alert{2.7}; 
+%\item \alert{3.2}–3.6;
+%\item 4.3–4.8; 
+%\item 5.2–5.4, 5.6–5.7; 
+%\item 6.2–6.4.
+%\end{itemize}
+%\end{frame}
+
+\begin{frame}[fragile]{Etimology}
+Quantum
+\begin{itemize}
+\item The amount or quantity observably present, or available. [18th c.] 
+\item (physics) The smallest possible, and therefore indivisible, unit of a given quantity or quantifiable phenomenon. [20th c.] 
+\item (computing) The amount of time allocated for a thread to perform its work in a multithreaded environment.
+\end{itemize}
+\end{frame}
+
+\section{On the shoulders of giants...}
+
+\begin{frame}
+\frametitle{Copenhagen interpretation}
+\begin{figure}
+\includegraphics[scale=0.20]{solvay_conference_nobels.jpg}
+\caption{Solvay Conference 1927 (17/29 Nobel prizes)}
+\end{figure}
+%"The Copenhagen interpretation of quantum theory starts from a paradox." Heisenberg
+\end{frame}
+
+\section{Framework}
+\begin{frame}
+\frametitle{Concepts}
+Relativistic Energy: $E = mc^2$\\
+Momentum: $p = m v$\\
+Radiation: transmission of energy through space.\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Waves}
+\begin{figure}
+\includegraphics[scale=0.25]{wave.jpg}
+%\caption{Wave components}
+\end{figure}
+Frequency: $\nu = \frac{c}{\lambda}$\\
+Electromagnetic Waves transport energy and momentum. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Waves: phase}
+\begin{figure}
+\includegraphics[scale=0.70]{phase_wave.jpg}
+\caption{Wave phase}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Waves: Interference}
+\begin{figure}
+\includegraphics[scale=0.80]{interference_waves.jpg}
+\caption{Waves interference}
+\end{figure}
+\pause LASER: wave sources are perfectly \alert{coherent} if they have a constant phase difference and the same frequency, and the same waveform.
+\end{frame}
+
+%\begin{frame}
+%\frametitle{Waves: Superposition}
+%%\begin{figure}
+%%\includegraphics[scale=0.80]{Superpositionprinciple.gif}
+%%\movie[options]{poster text}{movie filename}
+%\movie[autostart,loop,externalviewer]{Principle of Superposition for waves}{superposition.mp4}
+%%\caption{Waves Superposition}
+%%\end{figure}
+%Animation of two waves, the green wave moves to the right while blue wave moves to the left, the net red wave amplitude at each point is the sum of the amplitudes of the individual waves. Note that green(x,t) + blue(x,t) = red(x,t)
+%\end{frame}
+
+\section{Particle aspect of radiation}
+
+\begin{frame}
+\frametitle{Blackbody radiation [1900]}
+\begin{figure}
+\includegraphics[scale=0.70]{blackbody.jpg}
+\end{figure}
+\pause Planck’s quantization rule: the energy exchange between radiation and matter \emph{must be discrete}:
+\begin{equation*}
+	E = n h \nu, \; \; n = 1, 2, 3, ...
+\end{equation*}
+\pause $h \nu$ is the energy of a ``quantum" of radiation, $\nu$ represents the frequency of an oscillating charge.
+\end{frame}
+
+\begin{frame}
+\frametitle{Particle behavior of Waves}
+\begin{itemize}
+\item Planck's new idea, the \emph{discrete} exchange of energy, solved the ``ultraviolet catastrophe" as it matches experimental data.
+\item The spectrum of the blackbody radiation reveals the quantization of radiation, notably the particle behavior of electromagnetic waves.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{The end of the world as we know it...}
+The introduction of the constant \alert{$h$} had indeed heralded the \emph{end of classical physics} and the dawn of a new era: physics of the microphysical world.
+\newline
+\newline
+\pause $h = 6.62 x 10^{-34} J \cdot s$\\
+For a mass of 1 kg, length of 1 m, time 1 s, the Action $ = 981 x 10^2 J \cdot s$
+\end{frame}
+
+\begin{frame}
+\frametitle{Photoelectric Effect [1905]}
+\begin{figure}
+\includegraphics[scale=0.70]{photoelectric_effect.jpg}
+%\caption{Wave components}
+\end{figure}
+Einstein assumed that light is made of corpuscles each carrying an energy $h\nu$, called \emph{photons}. 
+\pause When a beam of light of frequency $\nu$ is incident on a metal, each
+photon transmits all its energy $h\nu$ to an electron near the surface; in the process, the photon is entirely absorbed by the electron.\\ 
+\pause The electron will thus absorb energy only in quanta of energy $h\nu$, irrespective of the intensity of the incident radiation.\\
+\pause Photoelectric effect does provide compelling evidence for the corpuscular
+nature of the electromagnetic radiation.
+\end{frame}
+
+\begin{frame}
+\frametitle{Compton Effect [1923]}
+\begin{figure}
+\includegraphics[scale=0.70]{compton_effect.jpg}
+\end{figure}
+\pause Compton effect confirms that photons behave like particles: they collide
+with electrons like material particles
+\end{frame}
+
+\begin{frame}
+\frametitle{Pair production, annihilation [1932]}
+\begin{figure}
+\includegraphics[scale=0.70]{pair_production.jpg}
+\end{figure}
+\begin{itemize}
+\item Predicted by Dirac’s relativistic quantum mechanics
+\item Is a direct consequence of the mass–energy equation of Einstein $E = mc^2$ which states that pure energy can be converted into mass and vice versa
+\end{itemize}
+\begin{center}
+    \pause $h \nu = E_{e^-} + E_{e^+} + E_{N}$
+\end{center}
+\begin{center}
+    \pause $= (m_ec^2 + k_{e^-}) + (m_ec^2 + k_{e^+}) + K_N$
+\end{center}
+\end{frame}
+
+\section{Wave Aspect of Particles}
+\begin{frame}
+\frametitle{Matter Waves [1923]}
+\begin{figure}
+\includegraphics[scale=0.50]{thomson_experiment.jpg}
+%\caption{Thomson Experiment}
+\end{figure}
+\pause de Broglie’s Hypothesis: all material particles should also display a dual \alert{wave–particle} behavior: $$\lambda = \frac{h}{p} = \frac{h}{mv}$$
+\pause e.g. BuckminsterFullerene (C60) is the largest object observed to exhibit wave–particle duality
+\end{frame}
+
+\section{Particles vs Waves}
+
+\begin{frame}
+\frametitle{Classical View of Particles and Waves}
+\begin{figure}
+\includegraphics[scale=0.50]{double_slit_particles.jpg}
+%\caption{Classical: bullets}
+\end{figure}
+\begin{figure}
+\pause \includegraphics[scale=0.50]{double_slit_waves.jpg}
+%\caption{Classical Particles}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Quantum View of Particles and Waves}
+\begin{figure}
+\includegraphics[scale=0.50]{double_slit_electrons.jpg}
+%\caption{Classical: water Waves}
+\end{figure}
+\begin{figure}
+\pause \includegraphics[scale=0.50]{double_slit_electrons_no_interfere.jpg}
+%\caption{Classical Particles}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Indeterministic Nature of the Microphysical World}
+Double-slit experimet shows:
+\begin{itemize}
+\item microscopic material particles do give rise to interference patterns.
+\item it is impossible to trace the motion of individual electrons.
+\item electrons display both particle and wave properties.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Wave–Particle Duality: Complementarity}
+\begin{itemize} 
+\item In the realm of classical physics waves and particles are mutually exclusive.
+\pause \item Quantum mechanics provides the proper framework for reconciling the particle and wave aspects of matter.
+\pause \item An experiment designed to isolate the particle features of a quantum system gives no information about its wave features, and vice versa
+\pause \item Particle and wave manifestations do not contradict or preclude one another, they are just \alert{complementary}. Bohr.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Indeterministic Nature of the Microphysical World}
+\begin{itemize}
+\item \alert{Heisenberg uncertainty principle:} \pause it is impossible to design an apparatus which allows us to determine the slit that the electron went through without disturbing the electron enough to destroy the interference pattern.
+\pause $$\Delta x \Delta p \geq \frac{\hbar}{2}$$
+\item \pause If a particle is accurately localized (i.e., $\Delta x \rightarrow 0$), there will be total uncertainty about its momentum (i.e., $\Delta px \rightarrow \infty$)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Probabilistic Interpretation}
+In quantum mechanics the state (or one of the states) of a particle is described by a wave function $\psi(\vec r, t)$, corresponding to de Broglie wave of this particle.
+It describes the wave properties of a particle.\\
+\pause Max Born interpreted as the probability of finding the particle somewhere in space:
+$$\int_{allSpace} |\psi(\vec r, t)|^2 d^3 r = 1$$
+where $\psi$ is a solution of the Schrödinger equation.
+\end{frame}
+
+\begin{frame}{Classic: Rutherford Atom [1911]}
+\begin{figure}
+\includegraphics[scale=0.50]{ruth_atom.jpg}
+%\caption{Classical Particles}
+\end{figure}
+Fails to explain:
+\begin{itemize}
+    \item atoms are stable (should lose energy)
+    \item radiate energy over discrete frequency ranges (should emit over continuous range)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Quantum: Bohr Atom [1913]}
+Shown by experiment:\\
+\hspace{1cm}  - atoms are stable\\
+\hspace{1cm}  - radiate energy over discrete frequency ranges
+\begin{itemize}
+\item Only a \alert{discrete} set of circular stable orbits are allowed.
+\item Emission or absorption of radiation can take place only when an electron jumps from one allowed orbit to another.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Postulates of Quantum Mechanics}
+- Spatial distribution of a particle is defined by a wave function.\\
+- A state vector (wave function) $\psi (\vec r, t)$ contains all the information we need to know about the system and from which all needed physical quantities can be computed.\\
+- Quantum postulates cannot be derived; they result from experiment.\\
+\end{frame}
+
+\begin{frame}{Postulates of Quantum Mechanics: cherry picked}
+\begin{itemize}
+\pause \item The state of any physical system is specified, at each time $t$, by a state vector $\ket{\psi (t)}$
+\pause \item The time evolution of the state vector $\ket{\psi (t)}$ of a system is governed by the time-dependent Schrödinger equation:
+$$i\hbar \frac{\partial \ket{\psi (t)}}{\partial t} = \hat H \ket{\psi (t)}$$
+\end{itemize}
+\pause The square norm of wave function $|\psi (\vec r, t)|^2$ represents a position probability density, that is the probability of finding the particle at time $t$ in a volume element.
+\end{frame}
+
+\begin{frame}{Superposition Principle}
+\begin{itemize}
+\item Digression on vectors in $R^2$
+\item Superposition of wave functions solutions of Schrödinger equation: $$\psi (\vec r, t) = \alpha_1 \psi_1(\vec r, t) + \alpha_2 \psi_2(\vec r, t)$$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Measurement in Quantum Mechanics}
+\begin{itemize}
+\item In QM the measurement process perturbs the system significantly.
+\item The act of measurement generally changes the state of the system
+\end{itemize}
+\end{frame}
+
+\section{Computational Quantum Mechanics}
+
+\begin{frame}{Quantum Information}
+The minimum unit of quantum information is a quantum bit, \alert{qubit}. Is a linear superposition of two orthogonal quantum states:\\ $\ket{0} = \left( \begin{matrix} 1 \\ 0 \end{matrix} \right)$ and $\ket{1} = \left( \begin{matrix} 0 \\ 1 \end{matrix} \right)$\\
+$$\ket{\psi} = \alpha \ket{0} + \beta \ket{1}$$
+where $\alpha$ and $\beta$ are arbitrary complex values satisfying $|\alpha|^2 + |\beta|^2 = 1$.
+\end{frame}
+
+
+\end{document}
+
+\begin{frame}
+\frametitle{Quantum Entanglement}
+ Imagine
+a physical process that emits two photons
+(packets of light), one to the left and
+the other to the right, with the two
+photons having opposite orientations
+(polarizations) for their oscillating electrical
+fields. Until detected, the polarization
+of each of the photons is indeterminate. As noted by Albert Einstein and
+others early in the century, at the instant
+a person measures the polarization for
+one photon, the state of the other polarization
+becomes immediately fixed—no
+matter how far away it is. Such instantaneous
+action at a distance is curious
+indeed. This phenomenon allows quantum
+systems to develop a spooky connection,
+a so-called entanglement, that
+effectively serves to wire together the
+qubits in a quantum computer.
+\end{frame}
+
+\begin{frame}
+\frametitle{Decoherence}
+almost any interaction a
+quantum system has with its environment—say,
+an atom colliding with another
+atom or a stray photon—constitutes
+a measurement. The superposition
+of quantum-mechanical states then collapses
+into a single very definite state—
+the one that is detected by an observer.
+This phenomenon, known as decoherence,
+makes further quantum calculation
+impossible. Thus, the inner workings of
+a quantum computer must somehow
+be separated from its surroundings to
+maintain coherence. But they must also
+be accessible so that calculations can be
+loaded, executed and read out.
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Quantum Computation}
+ A quantum
+bit, called a \alert{qubit}, might be represented
+by an atom in one of two different states,
+which can also be denoted as 0 or 1.
+Two qubits, like two classical bits, can
+attain four different well-defined states
+(0 and 0, 0 and 1, 1 and 0, or 1 and 1).
+But unlike classical bits, qubits can
+exist simultaneously as 0 and 1, with
+the probability for each state given by a
+numerical coefficient. Describing a twoqubit
+quantum computer thus requires
+four coefficients. In general, n qubits
+demand 2n numbers.\\
+A quantum computer
+promises to be immensely powerful
+because it can be in multiple states at
+once—a phenomenon called superposition—and
+because it can act on all its
+possible states simultaneously. Thus, a
+quantum computer could naturally perform
+myriad operations in parallel, using
+only a single processing unit.
+\end{frame}
+
+\begin{frame}
+\frametitle{To Develop}
+\begin{itemize}
+	\item Thomson experiment
+	\item Pauli Exclusion Principle
+	\item The Pictures of Quantum Mechanics (Schrödinger, Heisenberg)
+	\item quantum Zeno effect
+	\item Modern Interpretation: Many Alternative Histories of the Universe (Hugh Everet III) - describing quantum mechanics whenever Einstenian gravitation is taken into account - quantum cosmology
+	\item Decoherence and the Quantum-to-Classical Transition - maximilian schlosshauer - Springer
+	\begin{itemize}
+		\item The process by which a quantum system interacts with its environment in such a way that no interference between states of the system can be observed
+		\item quantum coherence leads to novel phenomena, the so-called macroscopic quantum phenomena. For instance, the laser, superconductivity and superfluidity, classical electromagnetic field (carrier signal for radio and TV)
+		\item  Recently, photons have been studied as elements of quantum computers,
+	\end{itemize}
+	\item M. Schlosshauer (ed.), Elegance and Enigma, The Quantum Interview - Springer
+\end{itemize}
+\end{frame}
+
+{\setbeamercolor{palette primary}{fg=black, bg=yellow}
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+}
+
+\appendix
+
+
+%\begin{frame}[allowframebreaks]{References}
+\begin{frame}{References}
+  \bibliographystyle{abbrv}
+  \begin{thebibliography}{10}    
+  \beamertemplatebookbibitems
+  \bibitem{zettili}
+    Nouredine Zettili
+    \newblock {\em Quantum Mechanics}
+    \newblock Wiley, 2009
+%  \beamertemplatearticlebibitems
+%  \bibitem{feynman}
+%    Richard Feynman
+%    \newblock Six easy pieces.
+%	\newblock 1994
+  \setbeamertemplate{bibliography item}[online]
+  \bibitem{wiki}
+	Wikipedia
+  \end{thebibliography}
+\end{frame}
+
+\end{document}
+
+\begin{frame}[fragile]{Backup slides}
+  Sometimes, it is useful to add slides at the end of your presentation to
+  refer to during audience questions.
+
+  The best way to do this is to include the \verb|appendixnumberbeamer|
+  package in your preamble and call \verb|\appendix| before your backup slides.
+
+  \themename will automatically turn off slide numbering and progress bars for
+  slides in the appendix.
+\end{frame}
+
+\begin{frame}[fragile]{Sections}
+  Sections group slides of the same topic
+
+  \begin{verbatim}    \section{Elements}\end{verbatim}
+
+  for which \themename provides a nice progress indicator \ldots
+\end{frame}
+
+\section{Titleformats}
+
+\begin{frame}{Metropolis titleformats}
+    \themename supports 4 different titleformats:
+    \begin{itemize}
+        \item Regular
+        \item \textsc{Smallcaps}
+        \item \textsc{allsmallcaps}
+        \item ALLCAPS
+    \end{itemize}
+    They can either be set at once for every title type or individually.
+\end{frame}
+
+{
+    \metroset{titleformat frame=smallcaps}
+\begin{frame}{Small caps}
+    This frame uses the \texttt{smallcaps} titleformat.
+
+    \begin{alertblock}{Potential Problems}
+        Be aware, that not every font supports small caps. If for example you typeset your presentation with pdfTeX and the Computer Modern Sans Serif font, every text in smallcaps will be typeset with the Computer Modern Serif font instead.
+    \end{alertblock}
+\end{frame}
+}
+
+{
+\metroset{titleformat frame=allsmallcaps}
+\begin{frame}{All small caps}
+    This frame uses the \texttt{allsmallcaps} titleformat.
+
+    \begin{alertblock}{Potential problems}
+        As this titleformat also uses smallcaps you face the same problems as with the \texttt{smallcaps} titleformat. Additionally this format can cause some other problems. Please refer to the documentation if you consider using it.
+
+        As a rule of thumb: Just use it for plaintext-only titles.
+    \end{alertblock}
+\end{frame}
+}
+
+{
+\metroset{titleformat frame=allcaps}
+\begin{frame}{All caps}
+    This frame uses the \texttt{allcaps} titleformat.
+
+    \begin{alertblock}{Potential Problems}
+        This titleformat is not as problematic as the \texttt{allsmallcaps} format, but basically suffers from the same deficiencies. So please have a look at the documentation if you want to use it.
+    \end{alertblock}
+\end{frame}
+}
+
+\section{Elements}
+
+\begin{frame}[fragile]{Typography}
+      \begin{verbatim}The theme provides sensible defaults to
+\emph{emphasize} text, \alert{accent} parts
+or show \textbf{bold} results.\end{verbatim}
+
+  \begin{center}becomes\end{center}
+
+  The theme provides sensible defaults to \emph{emphasize} text,
+  \alert{accent} parts or show \textbf{bold} results.
+\end{frame}
+
+\begin{frame}{Font feature test}
+  \begin{itemize}
+    \item Regular
+    \item \textit{Italic}
+    \item \textsc{SmallCaps}
+    \item \textbf{Bold}
+    \item \textbf{\textit{Bold Italic}}
+    \item \textbf{\textsc{Bold SmallCaps}}
+    \item \texttt{Monospace}
+    \item \texttt{\textit{Monospace Italic}}
+    \item \texttt{\textbf{Monospace Bold}}
+    \item \texttt{\textbf{\textit{Monospace Bold Italic}}}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Lists}
+  \begin{columns}[T,onlytextwidth]
+    \column{0.33\textwidth}
+      Items
+      \begin{itemize}
+        \item Milk \item Eggs \item Potatos
+      \end{itemize}
+
+    \column{0.33\textwidth}
+      Enumerations
+      \begin{enumerate}
+        \item First, \item Second and \item Last.
+      \end{enumerate}
+
+    \column{0.33\textwidth}
+      Descriptions
+      \begin{description}
+        \item[PowerPoint] Meeh. \item[Beamer] Yeeeha.
+      \end{description}
+  \end{columns}
+\end{frame}
+\begin{frame}{Animation}
+  \begin{itemize}[<+- | alert@+>]
+    \item \alert<4>{This is\only<4>{ really} important}
+    \item Now this
+    \item And now this
+  \end{itemize}
+\end{frame}
+\begin{frame}{Figures}
+  \begin{figure}
+    \newcounter{density}
+    \setcounter{density}{20}
+    \begin{tikzpicture}
+      \def\couleur{alerted text.fg}
+      \path[coordinate] (0,0)  coordinate(A)
+                  ++( 90:5cm) coordinate(B)
+                  ++(0:5cm) coordinate(C)
+                  ++(-90:5cm) coordinate(D);
+      \draw[fill=\couleur!\thedensity] (A) -- (B) -- (C) --(D) -- cycle;
+      \foreach \x in {1,...,40}{%
+          \pgfmathsetcounter{density}{\thedensity+20}
+          \setcounter{density}{\thedensity}
+          \path[coordinate] coordinate(X) at (A){};
+          \path[coordinate] (A) -- (B) coordinate[pos=.10](A)
+                              -- (C) coordinate[pos=.10](B)
+                              -- (D) coordinate[pos=.10](C)
+                              -- (X) coordinate[pos=.10](D);
+          \draw[fill=\couleur!\thedensity] (A)--(B)--(C)-- (D) -- cycle;
+      }
+    \end{tikzpicture}
+    \caption{Rotated square from
+    \href{http://www.texample.net/tikz/examples/rotated-polygons/}{texample.net}.}
+  \end{figure}
+\end{frame}
+\begin{frame}{Tables}
+  \begin{table}
+    \caption{Largest cities in the world (source: Wikipedia)}
+    \begin{tabular}{lr}
+      \toprule
+      City & Population\\
+      \midrule
+      Mexico City & 20,116,842\\
+      Shanghai & 19,210,000\\
+      Peking & 15,796,450\\
+      Istanbul & 14,160,467\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+\begin{frame}{Blocks}
+  Three different block environments are pre-defined and may be styled with an
+  optional background color.
+
+  \begin{columns}[T,onlytextwidth]
+    \column{0.5\textwidth}
+      \begin{block}{Default}
+        Block content.
+      \end{block}
+
+      \begin{alertblock}{Alert}
+        Block content.
+      \end{alertblock}
+
+      \begin{exampleblock}{Example}
+        Block content.
+      \end{exampleblock}
+
+    \column{0.5\textwidth}
+
+      \metroset{block=fill}
+
+      \begin{block}{Default}
+        Block content.
+      \end{block}
+
+      \begin{alertblock}{Alert}
+        Block content.
+      \end{alertblock}
+
+      \begin{exampleblock}{Example}
+        Block content.
+      \end{exampleblock}
+
+  \end{columns}
+\end{frame}
+\begin{frame}{Math}
+  \begin{equation*}
+    e = \lim_{n\to \infty} \left(1 + \frac{1}{n}\right)^n
+  \end{equation*}
+\end{frame}
+\begin{frame}{Line plots}
+  \begin{figure}
+    \begin{tikzpicture}
+      \begin{axis}[
+        mlineplot,
+        width=0.9\textwidth,
+        height=6cm,
+      ]
+
+        \addplot {sin(deg(x))};
+        \addplot+[samples=100] {sin(deg(2*x))};
+
+      \end{axis}
+    \end{tikzpicture}
+  \end{figure}
+\end{frame}
+\begin{frame}{Bar charts}
+  \begin{figure}
+    \begin{tikzpicture}
+      \begin{axis}[
+        mbarplot,
+        xlabel={Foo},
+        ylabel={Bar},
+        width=0.9\textwidth,
+        height=6cm,
+      ]
+
+      \addplot plot coordinates {(1, 20) (2, 25) (3, 22.4) (4, 12.4)};
+      \addplot plot coordinates {(1, 18) (2, 24) (3, 23.5) (4, 13.2)};
+      \addplot plot coordinates {(1, 10) (2, 19) (3, 25) (4, 15.2)};
+
+      \legend{lorem, ipsum, dolor}
+
+      \end{axis}
+    \end{tikzpicture}
+  \end{figure}
+\end{frame}
+\begin{frame}{Quotes}
+  \begin{quote}
+    Veni, Vidi, Vici
+  \end{quote}
+\end{frame}
+
+{%
+\setbeamertemplate{frame footer}{My custom footer}
+\begin{frame}[fragile]{Frame footer}
+    \themename defines a custom beamer template to add a text to the footer. It can be set via
+    \begin{verbatim}\setbeamertemplate{frame footer}{My custom footer}\end{verbatim}
+\end{frame}
+}
+
+\begin{frame}{References}
+  Some references to showcase [allowframebreaks] \cite{knuth92,ConcreteMath,Simpson,Er01,greenwade93}
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}{Summary}
+
+  Get the source of this theme and the demo presentation from
+
+  \begin{center}\url{github.com/matze/mtheme}\end{center}
+
+  The theme \emph{itself} is licensed under a
+  \href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
+  Attribution-ShareAlike 4.0 International License}.
+
+  \begin{center}\ccbysa\end{center}
+
+\end{frame}
